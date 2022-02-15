@@ -24,4 +24,7 @@ app.use("/", (req, res, next) => {
   res.send("<h1>Welcome to my express server</h1>");
 });
 
-http.createServer(app).listen(3000);
+app
+  .use((req, res, next) => {
+  })
+  .listen(3000);
