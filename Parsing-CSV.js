@@ -18,14 +18,6 @@ fs.createReadStream('./kepler_data.csv')
   })
   .on('end', () => {
     console.log('Gathered Data');
+    console.log(results);
   });
 
-const habitable = (planets) => {
-  const habitablePlanets = planets.filter((planet) => {
-    return planet.koi_disposition === 'CONFIRMED';
-  });
-
-  console.log(habitablePlanets);
-};
-
-habitable(results);
