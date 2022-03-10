@@ -1,3 +1,7 @@
+//brew install redis
+//brew services start redis
+
+
 const redis = require('redis');
 const client = redis.createClient();
 client.on('error', (error) => console.log(error));
