@@ -1,0 +1,36 @@
+# how to store arrays and nest objects:
+#   array1:
+#     - 1
+#     - 2
+#     - 3
+#   object1:
+#     object2: This is a nested object
+
+language: node_js
+node_js:
+  - 8
+#distribution, because our code is going to be cloned in a VM, we need to specify what OS the VM will be running
+dist: trusty #very specific version of linux that works very nicely for VMs
+#when travis boots up, it is going to create copies of mongo and redis as well as we are running redis only on our local machine
+services:
+  - mongodb
+  - redis-server
+#array of env variables we want to set anytime we run our app on the CI server
+env:
+  - PORT=3000 clientId = .... clientSecret = ....
+#since we usually do not upload the node_modules directory, we cache it with travis, so if our node_modules folder doesnt change
+#and we do npm install it will happen really fast, if it changes, we are anyway doing npm install so its cool
+cache:
+  directories:
+    - node_modules
+    - client/node_modules
+#configuring our app (listing all our commands)
+install:
+  - npm install
+#starting up server and running our tests
+script:
+  - nohup npm run start &
+#nohup - If the shell is closed, dont kill anything this command creates
+# run our server
+#& - run this command in the background
+
