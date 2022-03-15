@@ -65,6 +65,7 @@ app.get(
 //Middleware to see if user is logged in
 
 const isLoggedIn = (req, res, next) => {
+  //passport gives us an isAuthenticated function on the request object
   const isUserLoggedIn = req.isAuthenticated() && req.user;
   if (!isUserLoggedIn) {
     return res.send('You must be logged in');
