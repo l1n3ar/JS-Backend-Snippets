@@ -74,6 +74,11 @@ const isLoggedIn = (req, res, next) => {
   next();
 };
 
+//passport gives us a logout function on the request function also, this unsets the session in the browser and deletes the set cookie
+app.get('/auth/logout', (req, res, next) => {
+  req.logout();
+});
+
 //Use the middleware to see if logged in
 app.get('/secret', isLoggedIn, (req, res, next) => {
   res.send('This is a protected endpoint');
